@@ -126,6 +126,7 @@ nav h1 a {
   font-weight: normal;
   line-height: 1;
   margin: 0 20px;
+  padding-top: 10px;
 }
 .filter-options select {
   background-color: white;
@@ -288,9 +289,6 @@ nav h1 a {
 #restaurant-hours td {
   color: #666;
 }
-
-
-
 
 @media screen and (max-width: 599px) {
 
