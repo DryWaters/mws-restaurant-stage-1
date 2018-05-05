@@ -228,11 +228,12 @@ nav h1 a {
   line-height: 1.1;
 }
 #restaurant-img {
-	width: 90%;
+  width: 90%;
+  margin: 0 5%;
 }
 #restaurant-address {
   font-size: 12pt;
-  margin: 10px 0px;
+  margin: 10px 10%;
 }
 #restaurant-cuisine {
   background-color: #333;
@@ -240,29 +241,31 @@ nav h1 a {
   font-size: 12pt;
   font-weight: 300;
   letter-spacing: 10px;
-  margin: 0 0 20px;
+  margin: 0 5%;
   padding: 2px 0;
   text-align: center;
   text-transform: uppercase;
 	width: 90%;
 }
-#restaurant-container, #reviews-container {
+#restaurant-container {
   border-bottom: 1px solid #d9d9d9;
   border-top: 1px solid #fff;
   width: 50%;
 }
 #reviews-container {
-  width: 100%;
+  margin: 0 auto;
+  width: 90%;
 }
 #reviews-container h2 {
   color: #f58500;
   font-size: 24pt;
   font-weight: 300;
   letter-spacing: -1px;
-  padding-bottom: 1pt;
+  padding-left: 5px;
+  margin-bottom: 0;
 }
 #reviews-list {
-  margin: 0 0 40px 0;
+  margin: 0 0 60px 0;
   padding: 0;
 }
 #reviews-list li {
@@ -277,12 +280,23 @@ nav h1 a {
 #reviews-list li p {
   margin: 0 0 10px;
 }
+
+#restaurant-hours {
+  padding-left: 10%;
+}
+
 #restaurant-hours td {
   color: #666;
 }
 
 
+
+
 @media screen and (max-width: 599px) {
+
+  /*
+  * Main page media queries
+  */
 
   #restaurants-list {
     padding-left: 0;
@@ -307,7 +321,6 @@ nav h1 a {
     padding: 10px 0;
   }
 
-  
   .filter-options {
     display: flex;
     flex-direction: column;
@@ -324,15 +337,11 @@ nav h1 a {
     font-size: 1.25em;
   }
 
-  #breadcrumb {
-    width: 100%;
-  }
+  /*
+  * Restaurant details media queries
+  */
 
-  #restaurant-container {
-    width: 100%;
-  }
-
-  .inside #footer {
+  #breadcrumb, #restaurant-container, #restaurant-img, #restaurant-cuisine, .inside #footer, #reviews-container {
     width: 100%;
   }
 
@@ -342,15 +351,19 @@ nav h1 a {
     height: 500px;
   }
 
-  #reviews-list {
-    margin: 0;
+  #restaurant-hours, #restaurant-address, #reviews-list, #restaurant-img, #restaurant-cuisine {
     padding: 0;
+    margin: 10px 0;
   }
 
 }
 
 @media screen and (min-width: 600px) and (max-width: 800px) {
   
+  /*
+  * Main page media queries
+  */
+
   .filter-options h2 {
     display: none;
   }
@@ -365,6 +378,10 @@ nav h1 a {
     width: 50%;
     font-size: 1.25em;
   }
+
+  /*
+  * Restaurant details media queries
+  */
   
   #breadcrumb {
     width: 70%;
@@ -376,6 +393,11 @@ nav h1 a {
 
   #restaurant-container {
     width: 70%;
+  }
+
+  #restaurant-img, #restaurant-cuisine {
+    width: 100%;
+    margin: 0;
   }
 
   .inside #footer {
