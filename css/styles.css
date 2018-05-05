@@ -40,6 +40,13 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
   min-height: 100%;
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
+}
+#maincontent-restaurant {
+  background-color: #f3f3f3;
+  min-height: 100%;
+  display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
 }
 #footer {
@@ -362,7 +369,7 @@ nav h1 a {
   #breadcrumb {
     width: 70%;
   }
-  
+
   .inside #map-container {
     width: 30%;
   }
