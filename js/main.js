@@ -91,19 +91,10 @@ window.initMap = () => {
     center: loc,
     scrollwheel: false
   });
-
-  google.maps.event.addListener(self.map, 'tilesloaded', removeMapIndex);
-  // google.maps.event.addDomListener(window, 'load', removeMapIndex);
-  
-  
+  google.maps.event.addListener(self.map, 'tilesloaded', () => {
+    
+  });
   updateRestaurants();
-}
-
-removeMapIndex = () => {
-  let allMapElements = document.querySelectorAll('#map-container *');
-  allMapElements.forEach((element, index, arr) => {
-      arr[index].tabIndex = '-1';
-  })
 }
 
 /**
