@@ -117,7 +117,7 @@ nav h1 a {
 /* ====================== Restaurant Filtering ====================== */
 .filter-options {
   width: 100%;
-  height: 100%;
+  height: 50px;
   background-color: #3397DB;
   align-items: center;
 }
@@ -305,10 +305,6 @@ nav h1 a {
     padding: 0;
   }
 
-  #map {
-    height: 200px;
-  }
-
   #restaurants-list {
     padding-left: 0;
     padding-right: 0;
@@ -378,6 +374,7 @@ nav h1 a {
   /*
   * Main page media queries
   */
+
   .filter-options h2 {
     display: none;
   }
@@ -396,6 +393,7 @@ nav h1 a {
   /*
   * Restaurant details media queries
   */
+  
   #breadcrumb {
     width: 70%;
   }
