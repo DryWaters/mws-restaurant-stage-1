@@ -5,15 +5,15 @@ var map
 var markers = []
 
 // register service worker
-if (navigator.serviceWorker) {
-  navigator.serviceWorker.register('/sw.js').then(reg => {
-    console.log('Service worker registered.  Scope is ', reg.scope);
-  }).catch(error => {
-    console.log('Registration failed:', error);
-  });
-} else {
-  console.log('Service workers are not supproted');
-}
+// if (navigator.serviceWorker) {
+//   navigator.serviceWorker.register('/sw.js').then(reg => {
+//     console.log('Service worker registered.  Scope is ', reg.scope);
+//   }).catch(error => {
+//     console.log('Registration failed:', error);
+//   });
+// } else {
+//   console.log('Service workers are not supproted');
+// }
 
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
@@ -91,7 +91,17 @@ window.initMap = () => {
     center: loc,
     scrollwheel: false
   });
+
+  google.maps.event.addListener(self.map, 'tilesloaded', removeMapIndex);  
+  
   updateRestaurants();
+}
+
+removeMapIndex = () => {
+  let allMapElements = document.querySelectorAll('#map-container *');
+  allMapElements.forEach((element, index, arr) => {
+      arr[index].tabIndex = '-1';
+  })
 }
 
 /**
