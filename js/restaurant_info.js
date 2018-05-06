@@ -1,6 +1,38 @@
 let restaurant;
 var map;
 
+// keep looping util the gm-style class
+// which is the controls for google map finishes
+// loading (11)
+const checkForMapControlsExist = () => {
+  return new Promise((resolve, reject) => {
+    function waitUntil() {
+      setTimeout(() => {
+        console.log('waiting');
+        if (document.querySelector('.gm-style') !== null && document.querySelector('.gm-style').children.length === 11) {
+          resolve();
+        } else {
+          waitUntil();
+        }
+      }, 100);
+    }
+    waitUntil();
+  });
+};
+
+// Once controls have finished loading, get all inner elements
+// and remove them from the tabOrder
+removeMapIndex = () => {
+  let allMapElements = document.querySelectorAll('#map-container *');
+  allMapElements.forEach((element, index, arr) => {
+    arr[index].tabIndex = '-1';
+  })
+}
+
+// Check for the map controls to exist
+// then remove them from the tab index
+checkForMapControlsExist().then(removeMapIndex);
+
 /**
  * Initialize Google map, called from HTML.
  */

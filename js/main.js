@@ -4,16 +4,16 @@ let restaurants,
 var map
 var markers = []
 
-// register service worker
-if (navigator.serviceWorker) {
-  navigator.serviceWorker.register('/sw.js').then(reg => {
-    console.log('Service worker registered.  Scope is ', reg.scope);
-  }).catch(error => {
-    console.log('Registration failed:', error);
-  });
-} else {
-  console.log('Service workers are not supproted');
-}
+// // register service worker
+// if (navigator.serviceWorker) {
+//   navigator.serviceWorker.register('/sw.js').then(reg => {
+//     console.log('Service worker registered.  Scope is ', reg.scope);
+//   }).catch(error => {
+//     console.log('Registration failed:', error);
+//   });
+// } else {
+//   console.log('Service workers are not supproted');
+// }
 
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
@@ -21,7 +21,35 @@ if (navigator.serviceWorker) {
 document.addEventListener('DOMContentLoaded', (event) => {
   fetchNeighborhoods();
   fetchCuisines();
+  checkForMapControlsExist().then(removeMapIndex);
 });
+
+// keep looping util the gm-style class
+// which is the controls for google map finishes
+// loading (11)
+const checkForMapControlsExist = () => {
+  return new Promise((resolve, reject) => {
+    function waitUntil() {
+      setTimeout(() => {
+        if (document.querySelector('.gm-style') !== null && document.querySelector('.gm-style').children.length === 11) {
+          resolve();
+        } else {
+          waitUntil();
+        }
+      }, 100);
+    }
+    waitUntil();
+  });
+};
+
+// Once controls have finished loading, get all inner elements
+// and remove them from the tabOrder
+removeMapIndex = () => {
+  let allMapElements = document.querySelectorAll('#map-container *');
+  allMapElements.forEach((element, index, arr) => {
+    arr[index].tabIndex = '-1';
+  })
+}
 
 /**
  * Fetch all neighborhoods and set their HTML.
@@ -92,16 +120,7 @@ window.initMap = () => {
     scrollwheel: false
   });
 
-  google.maps.event.addListener(self.map, 'tilesloaded', removeMapIndex);  
-  
   updateRestaurants();
-}
-
-removeMapIndex = () => {
-  let allMapElements = document.querySelectorAll('#map-container *');
-  allMapElements.forEach((element, index, arr) => {
-      arr[index].tabIndex = '-1';
-  })
 }
 
 /**
